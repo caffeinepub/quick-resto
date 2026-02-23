@@ -1,235 +1,160 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-23T00:30:11.822Z",
+  "generatedAt": "2026-02-23T00:44:54.007Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 8,
-    "implemented": 6,
+    "total": 7,
+    "implemented": 5,
     "items": [
       {
-        "id": "REQ-1",
-        "summary": "Create a restaurant data model in the backend that stores restaurant name, cuisine type, price range (budget/moderate/expensive), rating (1-5 stars), address, hours of operation, and menu highlights as an array of strings",
+        "id": "REQ-10",
+        "summary": "Create backend methods to add items to a restaurant's order menu and retrieve all orderable items for a specific restaurant by restaurant name",
         "status": "unknown",
         "plannedFiles": [],
         "matchedFiles": []
       },
       {
-        "id": "REQ-2",
-        "summary": "Implement backend methods to add restaurants, get all restaurants, and filter restaurants by cuisine type, price range, and minimum rating",
+        "id": "REQ-11",
+        "summary": "Add a shopping cart state management system in the frontend that allows users to add menu items, adjust quantities, and view their cart total",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useCart.ts",
+          "frontend/src/contexts/CartContext.tsx",
+          "frontend/src/main.tsx",
+          "frontend/src/types/cart.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/contexts/CartContext.tsx",
+          "frontend/src/types/cart.ts"
+        ]
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Create an order menu section on the RestaurantDetailPage that displays all available items grouped by category with add-to-cart buttons",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/components/OrderMenu.tsx",
+          "frontend/src/components/MenuItemCard.tsx",
+          "frontend/src/pages/RestaurantDetailPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/components/OrderMenu.tsx",
+          "frontend/src/components/MenuItemCard.tsx",
+          "frontend/src/pages/RestaurantDetailPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Create a cart review page or modal that displays all selected items, quantities, individual prices, and total order cost with options to adjust quantities or remove items",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/CartPage.tsx",
+          "frontend/src/components/CartItemRow.tsx",
+          "frontend/src/components/CartButton.tsx",
+          "frontend/src/components/Layout.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/CartPage.tsx",
+          "frontend/src/components/CartItemRow.tsx",
+          "frontend/src/components/CartButton.tsx",
+          "frontend/src/components/Layout.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-14",
+        "summary": "Implement a checkout flow that collects delivery address and contact information, then stores the completed order in the backend with order status tracking",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/CheckoutPage.tsx",
+          "frontend/src/components/CheckoutForm.tsx",
+          "frontend/src/components/OrderSummary.tsx",
+          "frontend/src/pages/OrderConfirmationPage.tsx",
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/CartPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/CheckoutPage.tsx",
+          "frontend/src/components/CheckoutForm.tsx",
+          "frontend/src/components/OrderSummary.tsx",
+          "frontend/src/pages/OrderConfirmationPage.tsx",
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/CartPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-15",
+        "summary": "Create an order history page where users can view their past orders with order details, status, and restaurant information",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/OrderHistoryPage.tsx",
+          "frontend/src/components/OrderHistoryCard.tsx",
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/components/Layout.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/OrderHistoryPage.tsx",
+          "frontend/src/components/OrderHistoryCard.tsx",
+          "frontend/src/hooks/useQueries.ts",
+          "frontend/src/components/Layout.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Add an 'orderItems' array field to the Restaurant type in backend/main.mo to store menu items available for ordering, where each item includes a name, description, price, and category",
         "status": "unknown",
         "plannedFiles": [],
         "matchedFiles": []
-      },
-      {
-        "id": "REQ-3",
-        "summary": "Create a main restaurant listing page that displays all restaurants in a grid layout with restaurant photos, name, cuisine type, rating display, and price range indicator",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/RestaurantCard.tsx",
-          "frontend/src/components/RestaurantGrid.tsx",
-          "frontend/src/pages/RestaurantListingPage.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/RestaurantCard.tsx",
-          "frontend/src/components/RestaurantGrid.tsx",
-          "frontend/src/pages/RestaurantListingPage.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-4",
-        "summary": "Implement search functionality that allows users to search restaurants by name in real-time",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/SearchBar.tsx",
-          "frontend/src/hooks/useRestaurantSearch.ts",
-          "frontend/src/pages/RestaurantListingPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/SearchBar.tsx",
-          "frontend/src/hooks/useRestaurantSearch.ts",
-          "frontend/src/pages/RestaurantListingPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-5",
-        "summary": "Add filter controls for cuisine type, price range, and minimum rating that work together to refine the restaurant list",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/FilterControls.tsx",
-          "frontend/src/hooks/useRestaurantFilters.ts",
-          "frontend/src/pages/RestaurantListingPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/FilterControls.tsx",
-          "frontend/src/hooks/useRestaurantFilters.ts",
-          "frontend/src/pages/RestaurantListingPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-6",
-        "summary": "Create a restaurant detail view that displays full information including address, hours of operation, menu highlights, rating, price range, and cuisine type when a user clicks on a restaurant card",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/RestaurantDetailPage.tsx",
-          "frontend/src/components/RestaurantCard.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/RestaurantDetailPage.tsx",
-          "frontend/src/components/RestaurantCard.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-7",
-        "summary": "Design a modern, food-focused visual theme with warm, appetizing colors (earth tones, oranges, greens), clean typography, and an inviting layout that emphasizes restaurant imagery and creates a welcoming browsing experience",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/tailwind.config.js",
-          "frontend/src/index.css",
-          "frontend/src/components/Layout.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/tailwind.config.js",
-          "frontend/src/index.css",
-          "frontend/src/components/Layout.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-8",
-        "summary": "Render generated restaurant images as static assets in frontend/public/assets/generated for use in restaurant listings",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/utils/restaurantImages.ts",
-          "frontend/src/components/RestaurantCard.tsx",
-          "frontend/src/pages/RestaurantDetailPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/utils/restaurantImages.ts",
-          "frontend/src/components/RestaurantCard.tsx",
-          "frontend/src/pages/RestaurantDetailPage.tsx"
-        ]
       }
     ]
   },
   "changedFiles": [
+    "backend/authorization/MixinAuthorization.mo",
+    "backend/authorization/access-control.mo",
+    "backend/blob-storage/Mixin.mo",
+    "backend/blob-storage/Storage.mo",
     "backend/main.mo",
+    "backend/migration.mo",
     "build-request.json",
-    "build-template/Dockerfile",
-    "build-template/LICENSE",
     "build-template/README.md",
-    "build-template/deploy.sh",
-    "build-template/icp.yaml",
-    "build-template/package.json",
-    "build-template/pnpm-lock.yaml",
-    "build-template/pnpm-workspace.yaml",
-    "build-template/scripts/prune-unused-images.js",
-    "build-template/scripts/resize-images.js",
-    "build-template/src/backend/canister.yaml",
-    "build-template/src/backend/system-idl/aaaaa-aa.did",
-    "build-template/src/frontend/canister.yaml",
-    "build-template/src/frontend/components.json",
-    "build-template/src/frontend/env.json",
-    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
-    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
-    "build-template/src/frontend/eslint.config.js",
-    "build-template/src/frontend/package.json",
-    "build-template/src/frontend/postcss.config.js",
-    "build-template/src/frontend/src/components/ui/accordion.tsx",
-    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
-    "build-template/src/frontend/src/components/ui/alert.tsx",
-    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
-    "build-template/src/frontend/src/components/ui/avatar.tsx",
-    "build-template/src/frontend/src/components/ui/badge.tsx",
-    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
-    "build-template/src/frontend/src/components/ui/button.tsx",
-    "build-template/src/frontend/src/components/ui/calendar.tsx",
-    "build-template/src/frontend/src/components/ui/card.tsx",
-    "build-template/src/frontend/src/components/ui/carousel.tsx",
-    "build-template/src/frontend/src/components/ui/chart.tsx",
-    "build-template/src/frontend/src/components/ui/checkbox.tsx",
-    "build-template/src/frontend/src/components/ui/collapsible.tsx",
-    "build-template/src/frontend/src/components/ui/command.tsx",
-    "build-template/src/frontend/src/components/ui/context-menu.tsx",
-    "build-template/src/frontend/src/components/ui/dialog.tsx",
-    "build-template/src/frontend/src/components/ui/drawer.tsx",
-    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
-    "build-template/src/frontend/src/components/ui/form.tsx",
-    "build-template/src/frontend/src/components/ui/hover-card.tsx",
-    "build-template/src/frontend/src/components/ui/input-otp.tsx",
-    "build-template/src/frontend/src/components/ui/input.tsx",
-    "build-template/src/frontend/src/components/ui/label.tsx",
-    "build-template/src/frontend/src/components/ui/menubar.tsx",
-    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
-    "build-template/src/frontend/src/components/ui/pagination.tsx",
-    "build-template/src/frontend/src/components/ui/popover.tsx",
-    "build-template/src/frontend/src/components/ui/progress.tsx",
-    "build-template/src/frontend/src/components/ui/radio-group.tsx",
-    "build-template/src/frontend/src/components/ui/resizable.tsx",
-    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
-    "build-template/src/frontend/src/components/ui/select.tsx",
-    "build-template/src/frontend/src/components/ui/separator.tsx",
-    "build-template/src/frontend/src/components/ui/sheet.tsx",
-    "build-template/src/frontend/src/components/ui/sidebar.tsx",
-    "build-template/src/frontend/src/components/ui/skeleton.tsx",
-    "build-template/src/frontend/src/components/ui/slider.tsx",
-    "build-template/src/frontend/src/components/ui/sonner.tsx",
-    "build-template/src/frontend/src/components/ui/switch.tsx",
-    "build-template/src/frontend/src/components/ui/table.tsx",
-    "build-template/src/frontend/src/components/ui/tabs.tsx",
-    "build-template/src/frontend/src/components/ui/textarea.tsx",
-    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
-    "build-template/src/frontend/src/components/ui/toggle.tsx",
-    "build-template/src/frontend/src/components/ui/tooltip.tsx",
-    "build-template/src/frontend/src/hooks/use-mobile.tsx",
-    "build-template/src/frontend/src/lib/utils.ts",
-    "build-template/src/frontend/tsconfig.json",
-    "build-template/src/frontend/vite.config.js",
-    "build-template/tsconfig.json",
     "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/index.css",
-    "frontend/index.html",
-    "frontend/public/assets/generated/french-restaurant.dim_800x600.png",
-    "frontend/public/assets/generated/italian-restaurant.dim_800x600.png",
-    "frontend/public/assets/generated/mexican-restaurant.dim_800x600.png",
-    "frontend/public/assets/generated/steakhouse.dim_800x600.png",
-    "frontend/public/assets/generated/sushi-restaurant.dim_800x600.png",
-    "frontend/public/assets/generated/thai-restaurant.dim_800x600.png",
     "frontend/src/App.tsx",
     "frontend/src/backend.d.ts",
     "frontend/src/backend.ts",
-    "frontend/src/components/FilterControls.tsx",
+    "frontend/src/components/CartButton.tsx",
+    "frontend/src/components/CartItemRow.tsx",
+    "frontend/src/components/CheckoutForm.tsx",
     "frontend/src/components/Layout.tsx",
-    "frontend/src/components/RestaurantCard.tsx",
-    "frontend/src/components/RestaurantGrid.tsx",
-    "frontend/src/components/SearchBar.tsx",
-    "frontend/src/config.ts",
+    "frontend/src/components/MenuItemCard.tsx",
+    "frontend/src/components/OrderHistoryCard.tsx",
+    "frontend/src/components/OrderMenu.tsx",
+    "frontend/src/components/OrderSummary.tsx",
+    "frontend/src/contexts/CartContext.tsx",
     "frontend/src/declarations/backend.did.d.ts",
     "frontend/src/declarations/backend.did.js",
     "frontend/src/hooks/useActor.ts",
-    "frontend/src/hooks/useInternetIdentity.ts",
     "frontend/src/hooks/useQueries.ts",
-    "frontend/src/hooks/useRestaurantFilters.ts",
-    "frontend/src/hooks/useRestaurantSearch.ts",
-    "frontend/src/index.css",
-    "frontend/src/main.tsx",
+    "frontend/src/pages/CartPage.tsx",
+    "frontend/src/pages/CheckoutPage.tsx",
+    "frontend/src/pages/OrderConfirmationPage.tsx",
+    "frontend/src/pages/OrderHistoryPage.tsx",
     "frontend/src/pages/RestaurantDetailPage.tsx",
-    "frontend/src/pages/RestaurantListingPage.tsx",
-    "frontend/src/ui-summary.json",
-    "frontend/src/utils/StorageClient.ts",
-    "frontend/src/utils/restaurantImages.ts",
-    "frontend/tailwind.config.js",
+    "frontend/src/types/cart.ts",
+    "frontend/src/utils/urlParams.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

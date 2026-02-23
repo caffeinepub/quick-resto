@@ -10,6 +10,30 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
+export interface MenuItem {
+  'name' : string,
+  'description' : string,
+  'category' : string,
+  'price' : bigint,
+}
+export interface Order {
+  'deliveryAddress' : string,
+  'contactInfo' : string,
+  'orderStatus' : OrderStatus,
+  'userId' : Principal,
+  'orderId' : bigint,
+  'totalAmount' : bigint,
+  'restaurantName' : string,
+  'timestamp' : Time,
+  'items' : Array<OrderItem>,
+}
+export interface OrderItem { 'item' : MenuItem, 'quantity' : bigint }
+export type OrderStatus = { 'preparing' : null } |
+  { 'cancelled' : null } |
+  { 'pending' : null } |
+  { 'outForDelivery' : null } |
+  { 'delivered' : null } |
+  { 'confirmed' : null };
 export type PriceRange = { 'expensive' : null } |
   { 'budget' : null } |
   { 'moderate' : null };
@@ -17,20 +41,84 @@ export interface Restaurant {
   'hours' : string,
   'name' : string,
   'cuisineType' : string,
+  'menuItems' : Array<MenuItem>,
   'priceRange' : PriceRange,
   'address' : string,
   'rating' : bigint,
   'menuHighlights' : Array<string>,
 }
+export type Time = bigint;
+export interface UserProfile {
+  'name' : string,
+  'email' : string,
+  'phone' : string,
+  'defaultAddress' : string,
+}
+export type UserRole = { 'admin' : null } |
+  { 'user' : null } |
+  { 'guest' : null };
+export interface _CaffeineStorageCreateCertificateResult {
+  'method' : string,
+  'blob_hash' : string,
+}
+export interface _CaffeineStorageRefillInformation {
+  'proposed_top_up_amount' : [] | [bigint],
+}
+export interface _CaffeineStorageRefillResult {
+  'success' : [] | [boolean],
+  'topped_up_amount' : [] | [bigint],
+}
 export interface _SERVICE {
+  '_caffeineStorageBlobIsLive' : ActorMethod<[Uint8Array], boolean>,
+  '_caffeineStorageBlobsToDelete' : ActorMethod<[], Array<Uint8Array>>,
+  '_caffeineStorageConfirmBlobDeletion' : ActorMethod<
+    [Array<Uint8Array>],
+    undefined
+  >,
+  '_caffeineStorageCreateCertificate' : ActorMethod<
+    [string],
+    _CaffeineStorageCreateCertificateResult
+  >,
+  '_caffeineStorageRefillCashier' : ActorMethod<
+    [[] | [_CaffeineStorageRefillInformation]],
+    _CaffeineStorageRefillResult
+  >,
+  '_caffeineStorageUpdateGatewayPrincipals' : ActorMethod<[], undefined>,
+  '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
+  'addMenuItem' : ActorMethod<
+    [string, string, string, bigint, string],
+    undefined
+  >,
+  'addOrderMenuItem' : ActorMethod<
+    [string, string, string, bigint, string],
+    undefined
+  >,
   'addRestaurant' : ActorMethod<
     [string, string, PriceRange, bigint, string, string, Array<string>],
     undefined
   >,
+  'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
   'filterByCuisineType' : ActorMethod<[string], Array<Restaurant>>,
   'filterByMinimumRating' : ActorMethod<[bigint], Array<Restaurant>>,
   'filterByPriceRange' : ActorMethod<[PriceRange], Array<Restaurant>>,
   'getAllRestaurants' : ActorMethod<[], Array<Restaurant>>,
+  'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
+  'getCallerUserRole' : ActorMethod<[], UserRole>,
+  'getMenuItems' : ActorMethod<[string], Array<MenuItem>>,
+  'getOrderHistory' : ActorMethod<[], Array<Order>>,
+  'getOrderHistoryByRestaurant' : ActorMethod<[string], Array<Order>>,
+  'getOrderHistoryByUser' : ActorMethod<[Principal], Array<Order>>,
+  'getOrderMenuItems' : ActorMethod<[string], Array<MenuItem>>,
+  'getOrderStatus' : ActorMethod<[bigint], OrderStatus>,
+  'getTotalOrdersCount' : ActorMethod<[], bigint>,
+  'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
+  'isCallerAdmin' : ActorMethod<[], boolean>,
+  'placeOrder' : ActorMethod<
+    [string, Array<OrderItem>, string, string],
+    bigint
+  >,
+  'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
+  'updateOrderStatus' : ActorMethod<[bigint, OrderStatus], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

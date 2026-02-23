@@ -7,6 +7,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Separator } from '../components/ui/separator';
 import { Loader2 } from 'lucide-react';
+import OrderMenu from '../components/OrderMenu';
 
 function getPriceDisplay(priceRange: PriceRange): string {
   switch (priceRange) {
@@ -155,6 +156,9 @@ export default function RestaurantDetailPage() {
                 </ul>
               </CardContent>
             </Card>
+
+            {/* Order Menu */}
+            <OrderMenu restaurantName={restaurant.name} />
           </div>
 
           {/* Sidebar */}
@@ -212,4 +216,3 @@ export default function RestaurantDetailPage() {
     </div>
   );
 }
-

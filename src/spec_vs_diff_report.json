@@ -1,59 +1,51 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-23T00:30:11.819Z",
-  "summary": "The implementation comprehensively addresses all requirements. The backend includes a complete restaurant data model with all required fields, filtering methods by cuisine/price/rating, and add/get operations. The frontend implements a responsive restaurant listing page with search, filters (cuisine, price, rating), detail view, and a warm, food-focused visual theme. Generated restaurant images are properly mapped by cuisine type. All acceptance criteria appear satisfied based on the diff evidence.",
+  "generatedAt": "2026-02-23T00:44:54.004Z",
+  "summary": "The implementation comprehensively addresses all requirements for online ordering functionality. All 7 requirements (REQ-9 through REQ-15) have been implemented with appropriate backend types, API methods, frontend components, state management, and routing. The code includes proper error handling, authentication checks, and follows the specified constraints.",
   "missing_requirements": [],
   "hallucinated_features": [
     {
-      "description": "Internet Identity authentication integration (useInternetIdentity hook, InternetIdentityProvider, AuthClient usage)",
-      "reason": "The BuildRequest makes no mention of user authentication, login, or Internet Identity. The implementation includes a full authentication system with identity management, which was not requested.",
+      "description": "User profile management system with name, email, phone, and default address fields",
+      "reason": "The diff includes UserProfile type and methods (getCallerUserProfile, getUserProfile, saveCallerUserProfile) that store user profiles with name, email, phone, and defaultAddress fields. These were not mentioned in any BuildRequest requirement.",
       "evidence": [
-        "frontend/src/hooks/useInternetIdentity.ts",
-        "frontend/src/hooks/useActor.ts",
-        "frontend/src/main.tsx"
+        "backend/main.mo",
+        "frontend/src/hooks/useQueries.ts"
       ]
     },
     {
-      "description": "Query client integration with actor-based identity state management",
-      "reason": "The implementation includes complex query invalidation logic tied to identity changes in useActor.ts. While React Query was required, identity-based query management was not requested.",
+      "description": "URL parameter utility functions for admin token management",
+      "reason": "The urlParams.ts utility module includes extensive functionality for managing URL parameters, session storage, and specifically handling caffeineAdminToken which is not part of the ordering requirements.",
       "evidence": [
+        "frontend/src/utils/urlParams.ts",
         "frontend/src/hooks/useActor.ts"
-      ]
-    },
-    {
-      "description": "Dark mode theme support",
-      "reason": "The BuildRequest did not specify dark mode support. The implementation includes full dark mode color definitions in both index.css files.",
-      "evidence": [
-        "frontend/src/index.css",
-        "frontend/index.css"
       ]
     }
   ],
   "confidence": 0.92,
   "changed_files": [
-    "all_files_summary.json",
     "backend/main.mo",
+    "backend/migration.mo",
     "frontend-file-summaries.txt",
-    "frontend/index.css",
-    "frontend/index.html",
     "frontend/src/App.tsx",
-    "frontend/src/components/FilterControls.tsx",
+    "frontend/src/components/CartButton.tsx",
+    "frontend/src/components/CartItemRow.tsx",
+    "frontend/src/components/CheckoutForm.tsx",
     "frontend/src/components/Layout.tsx",
-    "frontend/src/components/RestaurantCard.tsx",
-    "frontend/src/components/RestaurantGrid.tsx",
-    "frontend/src/components/SearchBar.tsx",
+    "frontend/src/components/MenuItemCard.tsx",
+    "frontend/src/components/OrderHistoryCard.tsx",
+    "frontend/src/components/OrderMenu.tsx",
+    "frontend/src/components/OrderSummary.tsx",
+    "frontend/src/contexts/CartContext.tsx",
     "frontend/src/hooks/useActor.ts",
-    "frontend/src/hooks/useInternetIdentity.ts",
     "frontend/src/hooks/useQueries.ts",
-    "frontend/src/hooks/useRestaurantFilters.ts",
-    "frontend/src/hooks/useRestaurantSearch.ts",
-    "frontend/src/index.css",
-    "frontend/src/main.tsx",
+    "frontend/src/pages/CartPage.tsx",
+    "frontend/src/pages/CheckoutPage.tsx",
+    "frontend/src/pages/OrderConfirmationPage.tsx",
+    "frontend/src/pages/OrderHistoryPage.tsx",
     "frontend/src/pages/RestaurantDetailPage.tsx",
-    "frontend/src/pages/RestaurantListingPage.tsx",
-    "frontend/src/utils/restaurantImages.ts",
-    "frontend/tailwind.config.js",
+    "frontend/src/types/cart.ts",
+    "frontend/src/utils/urlParams.ts",
     "project_state.json"
   ]
 }

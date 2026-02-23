@@ -1,6 +1,10 @@
-import { createRouter, createRoute, createRootRoute, RouterProvider, Outlet } from '@tanstack/react-router';
+import { createRouter, createRoute, createRootRoute, RouterProvider } from '@tanstack/react-router';
 import RestaurantListingPage from './pages/RestaurantListingPage';
 import RestaurantDetailPage from './pages/RestaurantDetailPage';
+import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
+import OrderConfirmationPage from './pages/OrderConfirmationPage';
+import OrderHistoryPage from './pages/OrderHistoryPage';
 import Layout from './components/Layout';
 
 const rootRoute = createRootRoute({
@@ -19,7 +23,38 @@ const detailRoute = createRoute({
   component: RestaurantDetailPage,
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, detailRoute]);
+const cartRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/cart',
+  component: CartPage,
+});
+
+const checkoutRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/checkout',
+  component: CheckoutPage,
+});
+
+const orderConfirmationRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/order-confirmation/$orderId',
+  component: OrderConfirmationPage,
+});
+
+const orderHistoryRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/orders',
+  component: OrderHistoryPage,
+});
+
+const routeTree = rootRoute.addChildren([
+  indexRoute,
+  detailRoute,
+  cartRoute,
+  checkoutRoute,
+  orderConfirmationRoute,
+  orderHistoryRoute,
+]);
 
 const router = createRouter({ routeTree });
 
@@ -34,4 +69,3 @@ function App() {
 }
 
 export default App;
-

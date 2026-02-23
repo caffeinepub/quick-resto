@@ -2,72 +2,33 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-create-a-main-restaurant-listing-page-that-displays-all-restaurants-in-a-grid-layout-with-restaurant-photos-name-cuisine-type-rating-display-and-price-range-indicator",
-      "featureTitle": "Create a main restaurant listing page that displays all restaurants in a grid layout with restaurant photos, name, cuisine type, rating display, and price range indicator",
+      "featureId": "feature-add-a-shopping-cart-state-management-system-in-the-frontend-that-allows-users-to-add-menu-items-adjust-quantities-and-view-their-cart-total",
+      "featureTitle": "Add a shopping cart state management system in the frontend that allows users to add menu items, adjust quantities, and view their cart total",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/RestaurantCard.tsx",
-        "frontend/src/components/RestaurantGrid.tsx",
-        "frontend/src/pages/RestaurantListingPage.tsx"
+        "frontend/src/contexts/CartContext.tsx",
+        "frontend/src/types/cart.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0"
       ],
       "testIds": [
-        "REQ-3"
+        "REQ-11"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-implement-search-functionality-that-allows-users-to-search-restaurants-by-name-in-real-time",
-      "featureTitle": "Implement search functionality that allows users to search restaurants by name in real-time",
+      "featureId": "feature-create-an-order-menu-section-on-the-restaurantdetailpage-that-displays-all-available-items-grouped-by-category-with-add-to-cart-buttons",
+      "featureTitle": "Create an order menu section on the RestaurantDetailPage that displays all available items grouped by category with add-to-cart buttons",
       "files": [
-        "frontend/src/components/SearchBar.tsx",
-        "frontend/src/hooks/useRestaurantSearch.ts",
-        "frontend/src/pages/RestaurantListingPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-filter-controls-for-cuisine-type-price-range-and-minimum-rating-that-work-together-to-refine-the-restaurant-list",
-      "featureTitle": "Add filter controls for cuisine type, price range, and minimum rating that work together to refine the restaurant list",
-      "files": [
-        "frontend/src/components/FilterControls.tsx",
-        "frontend/src/hooks/useRestaurantFilters.ts",
-        "frontend/src/pages/RestaurantListingPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-5"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-create-a-restaurant-detail-view-that-displays-full-information-including-address-hours-of-operation-menu-highlights-rating-price-range-and-cuisine-type-when-a-user-clicks-on-a-restaurant-card",
-      "featureTitle": "Create a restaurant detail view that displays full information including address, hours of operation, menu highlights, rating, price range, and cuisine type when a user clicks on a restaurant card",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/RestaurantCard.tsx",
+        "frontend/src/components/MenuItemCard.tsx",
+        "frontend/src/components/OrderMenu.tsx",
+        "frontend/src/hooks/useQueries.ts",
         "frontend/src/pages/RestaurantDetailPage.tsx"
       ],
       "components": [
@@ -75,51 +36,86 @@
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0"
       ],
       "testIds": [
-        "REQ-6"
+        "REQ-12"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-design-a-modern-food-focused-visual-theme-with-warm-appetizing-colors-earth-tones-oranges-greens-clean-typography-and-an-inviting-layout-that-emphasizes-restaurant-imagery-and-creates-a-welcoming-browsing-experience",
-      "featureTitle": "Design a modern, food-focused visual theme with warm, appetizing colors (earth tones, oranges, greens), clean typography, and an inviting layout that emphasizes restaurant imagery and creates a welcoming browsing experience",
+      "featureId": "feature-create-a-cart-review-page-or-modal-that-displays-all-selected-items-quantities-individual-prices-and-total-order-cost-with-options-to-adjust-quantities-or-remove-items",
+      "featureTitle": "Create a cart review page or modal that displays all selected items, quantities, individual prices, and total order cost with options to adjust quantities or remove items",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/CartButton.tsx",
+        "frontend/src/components/CartItemRow.tsx",
+        "frontend/src/components/Layout.tsx",
+        "frontend/src/pages/CartPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-checkout-flow-that-collects-delivery-address-and-contact-information-then-stores-the-completed-order-in-the-backend-with-order-status-tracking",
+      "featureTitle": "Implement a checkout flow that collects delivery address and contact information, then stores the completed order in the backend with order status tracking",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/CheckoutForm.tsx",
+        "frontend/src/components/OrderSummary.tsx",
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/pages/CartPage.tsx",
+        "frontend/src/pages/CheckoutPage.tsx",
+        "frontend/src/pages/OrderConfirmationPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-an-order-history-page-where-users-can-view-their-past-orders-with-order-details-status-and-restaurant-information",
+      "featureTitle": "Create an order history page where users can view their past orders with order details, status, and restaurant information",
       "files": [
         "frontend/src/App.tsx",
         "frontend/src/components/Layout.tsx",
-        "frontend/src/index.css",
-        "frontend/tailwind.config.js"
+        "frontend/src/components/OrderHistoryCard.tsx",
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/pages/OrderHistoryPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0"
       ],
       "testIds": [
-        "REQ-7"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-render-generated-restaurant-images-as-static-assets-in-frontend-public-assets-generated-for-use-in-restaurant-listings",
-      "featureTitle": "Render generated restaurant images as static assets in frontend/public/assets/generated for use in restaurant listings",
-      "files": [
-        "frontend/src/components/RestaurantCard.tsx",
-        "frontend/src/pages/RestaurantDetailPage.tsx",
-        "frontend/src/utils/restaurantImages.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-8"
+        "REQ-15"
       ],
       "confidence": "high"
     }

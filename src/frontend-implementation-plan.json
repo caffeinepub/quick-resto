@@ -1,176 +1,194 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Quick Resto Restaurant Finder Frontend Implementation",
+  "title": "Add online ordering functionality for restaurants",
   "requirements": [
     {
-      "id": "REQ-3",
-      "summary": "Create restaurant listing page with grid layout displaying restaurant cards",
+      "id": "REQ-11",
+      "summary": "Add shopping cart state management system with add, adjust quantities, and view cart total capabilities",
       "acceptanceCriteria": [
-        "Restaurants display in a responsive grid",
-        "Each card shows photo, name, cuisine, rating, and price",
-        "Layout works on mobile and desktop"
+        "Cart state persists across page navigation within the session",
+        "Users can increment and decrement item quantities",
+        "Cart displays running total of all items",
+        "Cart shows item count badge or indicator"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/RestaurantCard.tsx",
+          "path": "frontend/src/hooks/useCart.ts",
           "operation": "create",
-          "description": "Create a restaurant card component that displays restaurant photo, name, cuisine type, rating display (1-5 stars), and price range indicator. Use the generated images from frontend/public/assets/generated/ with .dim_800x600 suffix. Make the card clickable to navigate to detail view. Use Tailwind CSS for responsive styling."
+          "description": "Create a custom React hook that manages cart state using React context and session storage, providing functions to add items, update quantities, remove items, calculate totals, and clear the cart"
         },
         {
-          "path": "frontend/src/components/RestaurantGrid.tsx",
+          "path": "frontend/src/contexts/CartContext.tsx",
           "operation": "create",
-          "description": "Create a restaurant grid component that renders an array of RestaurantCard components in a responsive grid layout. Use Tailwind CSS grid utilities for mobile-first responsive design (1 column on mobile, 2-3 columns on larger screens)."
+          "description": "Create a CartContext provider that wraps the application and provides cart state and operations to all child components via React context"
         },
         {
-          "path": "frontend/src/pages/RestaurantListingPage.tsx",
-          "operation": "create",
-          "description": "Create the main restaurant listing page that fetches all restaurants using getAllRestaurants backend method via React Query. Render the RestaurantGrid component with the fetched data. Include loading and error states. Wire this page into the app router."
-        },
-        {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/main.tsx",
           "operation": "modify",
-          "description": "Add route for RestaurantListingPage as the main route. Set up React Router if not already configured. Ensure the listing page is accessible at the root path."
+          "description": "Wrap the App component with CartContext provider to enable cart state access throughout the application"
+        },
+        {
+          "path": "frontend/src/types/cart.ts",
+          "operation": "create",
+          "description": "Define TypeScript types for cart items, cart state, and cart operations including CartItem with MenuItem, quantity, and restaurant name"
         }
       ]
     },
     {
-      "id": "REQ-4",
-      "summary": "Implement real-time search functionality to filter restaurants by name",
+      "id": "REQ-12",
+      "summary": "Create order menu section on RestaurantDetailPage displaying available items grouped by category with add-to-cart functionality",
       "acceptanceCriteria": [
-        "Search bar filters restaurants as user types",
-        "Search is case-insensitive",
-        "Results update without page reload"
+        "Menu items are displayed below existing restaurant details",
+        "Items are grouped by category (appetizers, mains, desserts, etc.)",
+        "Each item shows name, description, and price",
+        "Add to cart button is present for each item",
+        "Visual feedback when item is added to cart"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/SearchBar.tsx",
-          "operation": "create",
-          "description": "Create a search input component that accepts a search query and onChange handler. Style with Tailwind CSS to match the food-focused theme. Include a search icon and clear button."
-        },
-        {
-          "path": "frontend/src/hooks/useRestaurantSearch.ts",
-          "operation": "create",
-          "description": "Create a custom hook that filters restaurants by name using case-insensitive string matching. Accept search query as parameter and return filtered results."
-        },
-        {
-          "path": "frontend/src/pages/RestaurantListingPage.tsx",
+          "path": "frontend/src/hooks/useQueries.ts",
           "operation": "modify",
-          "description": "Integrate SearchBar component into the listing page. Manage search query state and use useRestaurantSearch hook to filter the restaurant list in real-time. Apply search filter before rendering RestaurantGrid."
-        }
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "summary": "Add filter controls for cuisine type, price range, and minimum rating",
-      "acceptanceCriteria": [
-        "Users can select cuisine type from dropdown",
-        "Users can select price range filter",
-        "Users can set minimum rating filter",
-        "Multiple filters work together simultaneously",
-        "Clear filters option available"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/FilterControls.tsx",
-          "operation": "create",
-          "description": "Create a filter controls component with dropdowns for cuisine type and price range (budget/moderate/expensive), and a rating selector (1-5 stars). Include a clear filters button. Use shadcn-ui Select components. Verify the component's usage instructions before implementing."
+          "description": "Add a useGetOrderMenuItems query hook that fetches menu items for a specific restaurant using the getOrderMenuItems backend method"
         },
         {
-          "path": "frontend/src/hooks/useRestaurantFilters.ts",
+          "path": "frontend/src/components/OrderMenu.tsx",
           "operation": "create",
-          "description": "Create a custom hook that manages filter state (cuisine, priceRange, minRating) and applies all filters simultaneously to the restaurant list. Combine with search results from useRestaurantSearch. Include a reset function for clearing filters."
+          "description": "Create a component that displays menu items grouped by category, with each item showing name, description, price, and an add-to-cart button with visual feedback on click"
         },
         {
-          "path": "frontend/src/pages/RestaurantListingPage.tsx",
-          "operation": "modify",
-          "description": "Integrate FilterControls component into the listing page. Use useRestaurantFilters hook to manage filter state and apply filters. Combine search and filter results before passing to RestaurantGrid."
-        }
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "summary": "Create restaurant detail view showing full restaurant information",
-      "acceptanceCriteria": [
-        "Clicking a restaurant opens detail view",
-        "All restaurant information is displayed",
-        "Menu highlights are shown as a list",
-        "Hours of operation are clearly formatted",
-        "User can return to main listing"
-      ],
-      "file_operations": [
+          "path": "frontend/src/components/MenuItemCard.tsx",
+          "operation": "create",
+          "description": "Create a reusable card component for displaying a single menu item with name, description, price, and add-to-cart button"
+        },
         {
           "path": "frontend/src/pages/RestaurantDetailPage.tsx",
-          "operation": "create",
-          "description": "Create a restaurant detail page that displays full restaurant information including name, cuisine type, rating (star display), price range, address, hours of operation, and menu highlights as a formatted list. Show the restaurant image from frontend/public/assets/generated/ with .dim_800x600 suffix. Include a back button to return to the listing page. Accept restaurant ID or data via route parameters."
-        },
-        {
-          "path": "frontend/src/components/RestaurantCard.tsx",
           "operation": "modify",
-          "description": "Make the restaurant card clickable and add navigation to RestaurantDetailPage when clicked. Pass restaurant data or identifier via route parameters."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add route for RestaurantDetailPage with dynamic parameter for restaurant identification. Configure route to allow navigation from listing page to detail page and back."
+          "description": "Integrate the OrderMenu component below the existing restaurant details section, passing the restaurant name to fetch and display available order items"
         }
       ]
     },
     {
-      "id": "REQ-7",
-      "summary": "Design modern food-focused visual theme with warm colors and inviting layout",
+      "id": "REQ-13",
+      "summary": "Create cart review page displaying selected items, quantities, prices, and total with options to adjust or remove items",
       "acceptanceCriteria": [
-        "Color scheme uses warm, food-appropriate colors",
-        "Typography is clean and readable",
-        "Layout emphasizes visual content",
-        "Design feels modern and inviting"
+        "Cart is accessible from any page via header or floating button",
+        "Shows all items with restaurant name, item name, quantity, and line total",
+        "Users can adjust quantities or remove items",
+        "Displays subtotal and order total",
+        "Empty cart state shows appropriate message"
       ],
       "file_operations": [
         {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "Extend Tailwind theme with custom color palette using warm, appetizing colors including earth tones (browns, tans), oranges, and greens. Define primary, secondary, and accent colors suitable for a food-focused application. Add custom font families for clean typography."
+          "path": "frontend/src/pages/CartPage.tsx",
+          "operation": "create",
+          "description": "Create a cart review page that displays all cart items grouped by restaurant, with quantity controls, remove buttons, line totals, and order summary with subtotal and total"
         },
         {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Apply global styling with the warm color scheme. Set typography styles for headings and body text that create a clean, readable, and inviting experience. Define base styles that emphasize visual content and create a modern feel."
+          "path": "frontend/src/components/CartItemRow.tsx",
+          "operation": "create",
+          "description": "Create a component for displaying a single cart item with restaurant name, item details, quantity controls (increment/decrement), remove button, and line total calculation"
+        },
+        {
+          "path": "frontend/src/components/CartButton.tsx",
+          "operation": "create",
+          "description": "Create a floating cart button component with item count badge that navigates to the cart page when clicked"
         },
         {
           "path": "frontend/src/components/Layout.tsx",
-          "operation": "create",
-          "description": "Create a layout component that wraps the application with consistent header, navigation, and footer styling. Apply the warm color theme and ensure the layout emphasizes restaurant imagery. Include app branding and navigation elements."
+          "operation": "modify",
+          "description": "Add the CartButton component to the header section to make cart accessible from any page"
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Wrap routes with the Layout component to apply consistent styling across all pages."
+          "description": "Add a cart route (/cart) that renders the CartPage component"
         }
       ]
     },
     {
-      "id": "REQ-8",
-      "summary": "Wire generated restaurant images as static assets in the frontend",
+      "id": "REQ-14",
+      "summary": "Implement checkout flow collecting delivery address and contact information with order submission",
       "acceptanceCriteria": [
-        "Generated images are stored in correct directory",
-        "Images are referenced correctly in restaurant cards",
-        "Images load properly in the UI"
+        "Checkout form collects delivery address, phone number, and optional notes",
+        "Backend stores orders with timestamp, user identity, restaurant, items, quantities, total, and delivery info",
+        "Order is assigned a unique order ID and initial status (pending)",
+        "Cart is cleared after successful order submission",
+        "User receives confirmation with order ID and summary"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/utils/restaurantImages.ts",
+          "path": "frontend/src/pages/CheckoutPage.tsx",
           "operation": "create",
-          "description": "Create a utility module that maps restaurant names or cuisine types to their corresponding generated image filenames. Include mappings for: frontend/public/assets/generated/italian-restaurant.dim_800x600.png, frontend/public/assets/generated/sushi-restaurant.dim_800x600.png, frontend/public/assets/generated/mexican-restaurant.dim_800x600.png, frontend/public/assets/generated/french-restaurant.dim_800x600.png, frontend/public/assets/generated/thai-restaurant.dim_800x600.png, and frontend/public/assets/generated/steakhouse.dim_800x600.png. Export a function that returns the appropriate image path for a given restaurant."
+          "description": "Create a checkout page with a form collecting delivery address, phone number, and optional notes, displaying order summary, and handling order submission with backend placeOrder method. Use the authorization component to ensure user is logged in before checkout."
         },
         {
-          "path": "frontend/src/components/RestaurantCard.tsx",
-          "operation": "modify",
-          "description": "Import and use the restaurantImages utility to display the correct generated image for each restaurant based on its cuisine type. Reference images using the full workspace path from frontend/public/assets/generated/ with .dim_800x600 suffix."
+          "path": "frontend/src/components/CheckoutForm.tsx",
+          "operation": "create",
+          "description": "Create a form component with input fields for delivery address, phone number, and optional notes with validation"
         },
         {
-          "path": "frontend/src/pages/RestaurantDetailPage.tsx",
+          "path": "frontend/src/components/OrderSummary.tsx",
+          "operation": "create",
+          "description": "Create a component displaying the order summary with items, quantities, prices, and total for review before submission"
+        },
+        {
+          "path": "frontend/src/pages/OrderConfirmationPage.tsx",
+          "operation": "create",
+          "description": "Create an order confirmation page displaying the order ID, summary, and success message after successful order placement"
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
           "operation": "modify",
-          "description": "Import and use the restaurantImages utility to display the restaurant's image on the detail page. Use the exact generated image filename with full workspace path from frontend/public/assets/generated/ and .dim_800x600 suffix."
+          "description": "Add a usePlaceOrder mutation hook that calls the placeOrder backend method and invalidates order history queries on success"
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add checkout route (/checkout) rendering CheckoutPage and order confirmation route (/order-confirmation/:orderId) rendering OrderConfirmationPage"
+        },
+        {
+          "path": "frontend/src/pages/CartPage.tsx",
+          "operation": "modify",
+          "description": "Add a 'Proceed to Checkout' button that navigates to the checkout page when cart is not empty"
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "Create order history page displaying past orders with details, status, and restaurant information",
+      "acceptanceCriteria": [
+        "Backend method returns all orders for the authenticated user",
+        "Orders are displayed in reverse chronological order (newest first)",
+        "Each order shows restaurant name, order date, total, and current status",
+        "Users can expand order details to see full item list",
+        "Navigation link to order history is accessible from header"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/OrderHistoryPage.tsx",
+          "operation": "create",
+          "description": "Create an order history page that displays all user orders in reverse chronological order, showing restaurant name, date, total, and status. Use the authorization component to ensure user is logged in before displaying orders."
+        },
+        {
+          "path": "frontend/src/components/OrderHistoryCard.tsx",
+          "operation": "create",
+          "description": "Create a card component for displaying a single order with expandable details showing the full item list, restaurant name, timestamp, total, and current status"
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add a useGetOrderHistory query hook that fetches all orders for the authenticated user using the getOrderHistory backend method"
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Add a navigation link to 'Order History' in the header that routes to the order history page"
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add an order history route (/orders) that renders the OrderHistoryPage component"
         }
       ]
     }

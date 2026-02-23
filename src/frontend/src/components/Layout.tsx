@@ -1,5 +1,6 @@
 import { Outlet, useNavigate } from '@tanstack/react-router';
 import { Utensils, Heart } from 'lucide-react';
+import CartButton from './CartButton';
 
 export default function Layout() {
   const navigate = useNavigate();
@@ -15,13 +16,20 @@ export default function Layout() {
             <Utensils className="h-7 w-7" />
             Quick Resto
           </button>
-          <nav className="ml-auto flex items-center gap-6">
+          <nav className="ml-auto flex items-center gap-4">
             <button
               onClick={() => navigate({ to: '/' })}
               className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
             >
               Browse Restaurants
             </button>
+            <button
+              onClick={() => navigate({ to: '/orders' })}
+              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+            >
+              Order History
+            </button>
+            <CartButton />
           </nav>
         </div>
       </header>
@@ -57,4 +65,3 @@ export default function Layout() {
     </div>
   );
 }
-
