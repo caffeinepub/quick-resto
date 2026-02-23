@@ -1,0 +1,178 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Quick Resto Restaurant Finder Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-3",
+      "summary": "Create restaurant listing page with grid layout displaying restaurant cards",
+      "acceptanceCriteria": [
+        "Restaurants display in a responsive grid",
+        "Each card shows photo, name, cuisine, rating, and price",
+        "Layout works on mobile and desktop"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/RestaurantCard.tsx",
+          "operation": "create",
+          "description": "Create a restaurant card component that displays restaurant photo, name, cuisine type, rating display (1-5 stars), and price range indicator. Use the generated images from frontend/public/assets/generated/ with .dim_800x600 suffix. Make the card clickable to navigate to detail view. Use Tailwind CSS for responsive styling."
+        },
+        {
+          "path": "frontend/src/components/RestaurantGrid.tsx",
+          "operation": "create",
+          "description": "Create a restaurant grid component that renders an array of RestaurantCard components in a responsive grid layout. Use Tailwind CSS grid utilities for mobile-first responsive design (1 column on mobile, 2-3 columns on larger screens)."
+        },
+        {
+          "path": "frontend/src/pages/RestaurantListingPage.tsx",
+          "operation": "create",
+          "description": "Create the main restaurant listing page that fetches all restaurants using getAllRestaurants backend method via React Query. Render the RestaurantGrid component with the fetched data. Include loading and error states. Wire this page into the app router."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for RestaurantListingPage as the main route. Set up React Router if not already configured. Ensure the listing page is accessible at the root path."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement real-time search functionality to filter restaurants by name",
+      "acceptanceCriteria": [
+        "Search bar filters restaurants as user types",
+        "Search is case-insensitive",
+        "Results update without page reload"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/SearchBar.tsx",
+          "operation": "create",
+          "description": "Create a search input component that accepts a search query and onChange handler. Style with Tailwind CSS to match the food-focused theme. Include a search icon and clear button."
+        },
+        {
+          "path": "frontend/src/hooks/useRestaurantSearch.ts",
+          "operation": "create",
+          "description": "Create a custom hook that filters restaurants by name using case-insensitive string matching. Accept search query as parameter and return filtered results."
+        },
+        {
+          "path": "frontend/src/pages/RestaurantListingPage.tsx",
+          "operation": "modify",
+          "description": "Integrate SearchBar component into the listing page. Manage search query state and use useRestaurantSearch hook to filter the restaurant list in real-time. Apply search filter before rendering RestaurantGrid."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add filter controls for cuisine type, price range, and minimum rating",
+      "acceptanceCriteria": [
+        "Users can select cuisine type from dropdown",
+        "Users can select price range filter",
+        "Users can set minimum rating filter",
+        "Multiple filters work together simultaneously",
+        "Clear filters option available"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/FilterControls.tsx",
+          "operation": "create",
+          "description": "Create a filter controls component with dropdowns for cuisine type and price range (budget/moderate/expensive), and a rating selector (1-5 stars). Include a clear filters button. Use shadcn-ui Select components. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useRestaurantFilters.ts",
+          "operation": "create",
+          "description": "Create a custom hook that manages filter state (cuisine, priceRange, minRating) and applies all filters simultaneously to the restaurant list. Combine with search results from useRestaurantSearch. Include a reset function for clearing filters."
+        },
+        {
+          "path": "frontend/src/pages/RestaurantListingPage.tsx",
+          "operation": "modify",
+          "description": "Integrate FilterControls component into the listing page. Use useRestaurantFilters hook to manage filter state and apply filters. Combine search and filter results before passing to RestaurantGrid."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Create restaurant detail view showing full restaurant information",
+      "acceptanceCriteria": [
+        "Clicking a restaurant opens detail view",
+        "All restaurant information is displayed",
+        "Menu highlights are shown as a list",
+        "Hours of operation are clearly formatted",
+        "User can return to main listing"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/RestaurantDetailPage.tsx",
+          "operation": "create",
+          "description": "Create a restaurant detail page that displays full restaurant information including name, cuisine type, rating (star display), price range, address, hours of operation, and menu highlights as a formatted list. Show the restaurant image from frontend/public/assets/generated/ with .dim_800x600 suffix. Include a back button to return to the listing page. Accept restaurant ID or data via route parameters."
+        },
+        {
+          "path": "frontend/src/components/RestaurantCard.tsx",
+          "operation": "modify",
+          "description": "Make the restaurant card clickable and add navigation to RestaurantDetailPage when clicked. Pass restaurant data or identifier via route parameters."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for RestaurantDetailPage with dynamic parameter for restaurant identification. Configure route to allow navigation from listing page to detail page and back."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Design modern food-focused visual theme with warm colors and inviting layout",
+      "acceptanceCriteria": [
+        "Color scheme uses warm, food-appropriate colors",
+        "Typography is clean and readable",
+        "Layout emphasizes visual content",
+        "Design feels modern and inviting"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with custom color palette using warm, appetizing colors including earth tones (browns, tans), oranges, and greens. Define primary, secondary, and accent colors suitable for a food-focused application. Add custom font families for clean typography."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Apply global styling with the warm color scheme. Set typography styles for headings and body text that create a clean, readable, and inviting experience. Define base styles that emphasize visual content and create a modern feel."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "create",
+          "description": "Create a layout component that wraps the application with consistent header, navigation, and footer styling. Apply the warm color theme and ensure the layout emphasizes restaurant imagery. Include app branding and navigation elements."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap routes with the Layout component to apply consistent styling across all pages."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Wire generated restaurant images as static assets in the frontend",
+      "acceptanceCriteria": [
+        "Generated images are stored in correct directory",
+        "Images are referenced correctly in restaurant cards",
+        "Images load properly in the UI"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/restaurantImages.ts",
+          "operation": "create",
+          "description": "Create a utility module that maps restaurant names or cuisine types to their corresponding generated image filenames. Include mappings for: frontend/public/assets/generated/italian-restaurant.dim_800x600.png, frontend/public/assets/generated/sushi-restaurant.dim_800x600.png, frontend/public/assets/generated/mexican-restaurant.dim_800x600.png, frontend/public/assets/generated/french-restaurant.dim_800x600.png, frontend/public/assets/generated/thai-restaurant.dim_800x600.png, and frontend/public/assets/generated/steakhouse.dim_800x600.png. Export a function that returns the appropriate image path for a given restaurant."
+        },
+        {
+          "path": "frontend/src/components/RestaurantCard.tsx",
+          "operation": "modify",
+          "description": "Import and use the restaurantImages utility to display the correct generated image for each restaurant based on its cuisine type. Reference images using the full workspace path from frontend/public/assets/generated/ with .dim_800x600 suffix."
+        },
+        {
+          "path": "frontend/src/pages/RestaurantDetailPage.tsx",
+          "operation": "modify",
+          "description": "Import and use the restaurantImages utility to display the restaurant's image on the detail page. Use the exact generated image filename with full workspace path from frontend/public/assets/generated/ and .dim_800x600 suffix."
+        }
+      ]
+    }
+  ]
+}

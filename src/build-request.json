@@ -1,0 +1,160 @@
+{
+  "kind": "build_request",
+  "title": "Build Quick Resto restaurant finder app",
+  "projectName": "Quick Resto",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a restaurant data model in the backend that stores restaurant name, cuisine type, price range (budget/moderate/expensive), rating (1-5 stars), address, hours of operation, and menu highlights as an array of strings",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-5",
+          "msg-6"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Restaurant model includes all specified fields",
+        "Backend exposes methods to create and retrieve restaurants",
+        "Price range is stored as a categorical value"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement backend methods to add restaurants, get all restaurants, and filter restaurants by cuisine type, price range, and minimum rating",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Can add new restaurants to the system",
+        "Can retrieve all restaurants",
+        "Can filter by cuisine type",
+        "Can filter by price range",
+        "Can filter by minimum rating threshold"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Create a main restaurant listing page that displays all restaurants in a grid layout with restaurant photos, name, cuisine type, rating display, and price range indicator",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5",
+          "msg-6"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Restaurants display in a responsive grid",
+        "Each card shows photo, name, cuisine, rating, and price",
+        "Layout works on mobile and desktop"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Implement search functionality that allows users to search restaurants by name in real-time",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Search bar filters restaurants as user types",
+        "Search is case-insensitive",
+        "Results update without page reload"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add filter controls for cuisine type, price range, and minimum rating that work together to refine the restaurant list",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can select cuisine type from dropdown",
+        "Users can select price range filter",
+        "Users can set minimum rating filter",
+        "Multiple filters work together simultaneously",
+        "Clear filters option available"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Create a restaurant detail view that displays full information including address, hours of operation, menu highlights, rating, price range, and cuisine type when a user clicks on a restaurant card",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking a restaurant opens detail view",
+        "All restaurant information is displayed",
+        "Menu highlights are shown as a list",
+        "Hours of operation are clearly formatted",
+        "User can return to main listing"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Design a modern, food-focused visual theme with warm, appetizing colors (earth tones, oranges, greens), clean typography, and an inviting layout that emphasizes restaurant imagery and creates a welcoming browsing experience",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Color scheme uses warm, food-appropriate colors",
+        "Typography is clean and readable",
+        "Layout emphasizes visual content",
+        "Design feels modern and inviting"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Render generated restaurant images as static assets in frontend/public/assets/generated for use in restaurant listings",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are stored in correct directory",
+        "Images are referenced correctly in restaurant cards",
+        "Images load properly in the UI"
+      ]
+    }
+  ],
+  "constraints": [
+    "Use single-actor Motoko architecture for backend",
+    "Frontend must use React, Tailwind CSS, and React Query",
+    "Do not modify immutable frontend paths"
+  ],
+  "nonGoals": [
+    "Real-time reservations or booking system",
+    "Integration with external restaurant APIs",
+    "User reviews or rating submission",
+    "Map integration or GPS location services",
+    "Payment processing"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Modern Italian restaurant interior with warm lighting and rustic decor (italian-restaurant.dim_800x600.png)",
+      "Contemporary sushi restaurant with minimalist design and fresh ingredients display (sushi-restaurant.dim_800x600.png)",
+      "Cozy Mexican restaurant with colorful decorations and traditional elements (mexican-restaurant.dim_800x600.png)",
+      "Elegant French bistro with classic Parisian atmosphere (french-restaurant.dim_800x600.png)",
+      "Vibrant Thai restaurant with tropical accents and authentic decor (thai-restaurant.dim_800x600.png)",
+      "Contemporary American steakhouse with upscale ambiance (steakhouse.dim_800x600.png)"
+    ],
+    "edits": []
+  }
+}

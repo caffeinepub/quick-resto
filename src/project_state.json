@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Quick Resto - a fast restaurant finder app",
+  "architectural_notes": [
+    "Clean, modern interface design"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Modern Italian restaurant interior with warm lighting and rustic decor (italian-restaurant.dim_800x600.png)\n- Contemporary sushi restaurant with minimalist design and fresh ingredients display (sushi-restaurant.dim_800x600.png)\n- Cozy Mexican restaurant with colorful decorations and traditional elements (mexican-restaurant.dim_800x600.png)\n- Elegant French bistro with classic Parisian atmosphere (french-restaurant.dim_800x600.png)\n- Vibrant Thai restaurant with tropical accents and authentic decor (thai-restaurant.dim_800x600.png)\n- Contemporary American steakhouse with upscale ambiance (steakhouse.dim_800x600.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-main-restaurant-listing-page-that-displays-all-restaurants-in-a-grid-layout-with-restaurant-photos-name-cuisine-type-rating-display-and-price-range-indicator",
+      "title": "Create a main restaurant listing page that displays all restaurants in a grid layout with restaurant photos, name, cuisine type, rating display, and price range indicator",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-search-functionality-that-allows-users-to-search-restaurants-by-name-in-real-time",
+      "title": "Implement search functionality that allows users to search restaurants by name in real-time",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-filter-controls-for-cuisine-type-price-range-and-minimum-rating-that-work-together-to-refine-the-restaurant-list",
+      "title": "Add filter controls for cuisine type, price range, and minimum rating that work together to refine the restaurant list",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-restaurant-detail-view-that-displays-full-information-including-address-hours-of-operation-menu-highlights-rating-price-range-and-cuisine-type-when-a-user-clicks-on-a-restaurant-card",
+      "title": "Create a restaurant detail view that displays full information including address, hours of operation, menu highlights, rating, price range, and cuisine type when a user clicks on a restaurant card",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-a-modern-food-focused-visual-theme-with-warm-appetizing-colors-earth-tones-oranges-greens-clean-typography-and-an-inviting-layout-that-emphasizes-restaurant-imagery-and-creates-a-welcoming-browsing-experience",
+      "title": "Design a modern, food-focused visual theme with warm, appetizing colors (earth tones, oranges, greens), clean typography, and an inviting layout that emphasizes restaurant imagery and creates a welcoming browsing experience",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-render-generated-restaurant-images-as-static-assets-in-frontend-public-assets-generated-for-use-in-restaurant-listings",
+      "title": "Render generated restaurant images as static assets in frontend/public/assets/generated for use in restaurant listings",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Restaurant listings with photos",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Quick filters (cuisine type, rating, price range)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Simple search functionality",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Restaurant details (address, hours, menu highlights)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Create a restaurant data model in the backend that stores restaurant name, cuisine type, price range (budget/moderate/expensive), rating (1-5 stars), address, hours of operation, and menu highlights as an array of strings",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Implement backend methods to add restaurants, get all restaurants, and filter restaurants by cuisine type, price range, and minimum rating",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Quick Resto",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

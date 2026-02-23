@@ -1,0 +1,127 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-main-restaurant-listing-page-that-displays-all-restaurants-in-a-grid-layout-with-restaurant-photos-name-cuisine-type-rating-display-and-price-range-indicator",
+      "featureTitle": "Create a main restaurant listing page that displays all restaurants in a grid layout with restaurant photos, name, cuisine type, rating display, and price range indicator",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/RestaurantCard.tsx",
+        "frontend/src/components/RestaurantGrid.tsx",
+        "frontend/src/pages/RestaurantListingPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-search-functionality-that-allows-users-to-search-restaurants-by-name-in-real-time",
+      "featureTitle": "Implement search functionality that allows users to search restaurants by name in real-time",
+      "files": [
+        "frontend/src/components/SearchBar.tsx",
+        "frontend/src/hooks/useRestaurantSearch.ts",
+        "frontend/src/pages/RestaurantListingPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-filter-controls-for-cuisine-type-price-range-and-minimum-rating-that-work-together-to-refine-the-restaurant-list",
+      "featureTitle": "Add filter controls for cuisine type, price range, and minimum rating that work together to refine the restaurant list",
+      "files": [
+        "frontend/src/components/FilterControls.tsx",
+        "frontend/src/hooks/useRestaurantFilters.ts",
+        "frontend/src/pages/RestaurantListingPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-restaurant-detail-view-that-displays-full-information-including-address-hours-of-operation-menu-highlights-rating-price-range-and-cuisine-type-when-a-user-clicks-on-a-restaurant-card",
+      "featureTitle": "Create a restaurant detail view that displays full information including address, hours of operation, menu highlights, rating, price range, and cuisine type when a user clicks on a restaurant card",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/RestaurantCard.tsx",
+        "frontend/src/pages/RestaurantDetailPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-design-a-modern-food-focused-visual-theme-with-warm-appetizing-colors-earth-tones-oranges-greens-clean-typography-and-an-inviting-layout-that-emphasizes-restaurant-imagery-and-creates-a-welcoming-browsing-experience",
+      "featureTitle": "Design a modern, food-focused visual theme with warm, appetizing colors (earth tones, oranges, greens), clean typography, and an inviting layout that emphasizes restaurant imagery and creates a welcoming browsing experience",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/Layout.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-render-generated-restaurant-images-as-static-assets-in-frontend-public-assets-generated-for-use-in-restaurant-listings",
+      "featureTitle": "Render generated restaurant images as static assets in frontend/public/assets/generated for use in restaurant listings",
+      "files": [
+        "frontend/src/components/RestaurantCard.tsx",
+        "frontend/src/pages/RestaurantDetailPage.tsx",
+        "frontend/src/utils/restaurantImages.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
